@@ -1,0 +1,65 @@
+API Documentation for sinup/singin
+
+This API provides endpoints for user sign-up and signin functionality.
+
+## Base URL
+http://localhost:30000/
+
+Endpoints
+/user/signup
+Request POST
+localhost:30000/user/signup
+Description:
+This will creat new user in the system.
+Request Body:
+json
+{
+    "username": "user123",
+    "email": "user@example.com",
+    "password": "password123"
+}
+Responses:
+
+200 OK: User created successfully.
+400 Bad Request: Missing required fields or invalid input password length.
+{
+    "error": "All fields are required."
+    "error": "Password must be at least 8 characters long."
+    "error": "Email already in use."
+}
+/user/login
+Request POST
+localhost:30000/user/login
+Description:
+This will Login an existing user and returns a jwt token.
+Request Body:
+{
+    "email": "user@example.com",
+    "password": "password123"
+}
+Responses:
+
+200 OK: Login successful.
+json
+{
+    "username": "xyx",
+    "email": "user@example.com",
+    "token": jwt
+}
+401 Unauthorized: Invalid email or password.
+json
+{
+    "msg": "Password matching failed"
+}
+500 err: error
+json
+{
+    err: err
+}
+Common Errors:
+400 Bad Request: Invalid or missing input data.
+401 Unauthorized: Invalid credentials.
+404 Not Found: Resource or endpoint does not exist.
+
+
+
